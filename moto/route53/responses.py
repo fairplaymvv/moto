@@ -33,7 +33,7 @@ class Route53(BaseResponse):
         vpcregion = None
         if request.method == "POST":
             elements = xmltodict.parse(self.body)
-            zone_request = elements["CreateHostedZoneRequest"]
+            zone_request = elements["CreateHostedZoneRequest"] or {}
             if "HostedZoneConfig" in zone_request:
                 zone_config = zone_request["HostedZoneConfig"]
                 comment = zone_config["Comment"]
